@@ -52,3 +52,5 @@ security/sbom.cdx.json
 
 # macOS
 .DS_Store
+node_modules/
+frontend/node_modules/
