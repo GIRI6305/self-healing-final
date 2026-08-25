@@ -1,0 +1,3 @@
+package com.portfolio.selfhealing.config;
+import jakarta.servlet.*; import jakarta.servlet.http.*; import org.slf4j.MDC; import org.springframework.stereotype.Component; import java.io.IOException; import java.util.UUID;
+@Component public class RequestIdFilter implements Filter { public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,ServletException { HttpServletRequest r=(HttpServletRequest)req; String id=r.getHeader("X-Request-ID"); if(id==null||id.isBlank()) id=UUID.randomUUID().toString(); MDC.put("traceId",id); ((HttpServletResponse)res).setHeader("X-Request-ID",id); try { chain.doFilter(req,res); } finally { MDC.remove("traceId"); } } }

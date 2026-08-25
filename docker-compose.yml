@@ -1,0 +1,18 @@
+services:
+  platform-api:
+    build: .
+    image: platform-api:1.0.0
+    ports: ["${API_PORT:-8080}:8080"]
+    read_only: true
+    tmpfs: [/tmp]
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    ports: ["${PROMETHEUS_PORT:-9090}:9090"]
+    volumes: ["./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "./monitoring/prometheus/rules:/etc/prometheus/rules:ro"]
+    depends_on: [platform-api]
+  grafana:
+    image: grafana/grafana:12.1.1
+    ports: ["${GRAFANA_PORT:-3000}:3000"]
+    environment: {GF_SECURITY_ADMIN_USER: admin, GF_SECURITY_ADMIN_PASSWORD: admin}
+    volumes: ["./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro", "./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro"]
+    depends_on: [prometheus]

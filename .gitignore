@@ -1,0 +1,54 @@
+# OS
+.DS_Store
+.Trashes
+.AppleDouble
+.LSOverride
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Java / Maven
+backend/target/
+**/target/
+*.class
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+.terraform.lock.hcl
+
+# Kubernetes / local runtime
+*.pid
+
+# Docker
+docker-data/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Generated security artifacts
+security/sbom.cdx.json
+
+# macOS
+.DS_Store

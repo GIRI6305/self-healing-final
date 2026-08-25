@@ -1,0 +1,3 @@
+package com.portfolio.selfhealing.api;
+import org.springframework.http.*; import org.springframework.web.bind.MethodArgumentNotValidException; import org.springframework.web.bind.annotation.*; import java.time.*; import java.util.*;
+@RestControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(MethodArgumentNotValidException.class) ResponseEntity<?> validation(MethodArgumentNotValidException e) { return ResponseEntity.badRequest().body(Map.of("timestamp",Instant.now(),"error","VALIDATION_FAILED","message","Request validation failed")); } @ExceptionHandler(Exception.class) ResponseEntity<?> error(Exception e) { return ResponseEntity.status(500).body(Map.of("timestamp",Instant.now(),"error","INTERNAL_ERROR","message","Unexpected server error")); } }
