@@ -31,3 +31,7 @@ If a default port is already occupied, `setup-local.sh` automatically selects th
 `./scripts/cleanup-local.sh`
 
 The scripts are defensive: unavailable optional tools are reported as SKIPPED rather than silently treated as passed.
+
+# Production Upgrade
+
+CI/CD, automated testing, production health checks, monitoring configuration, deployment documentation, and custom-domain documentation are included.

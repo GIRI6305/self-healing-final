@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: self-healing-final
+    runtime: java
+    rootDir: backend
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/self-healing-platform-1.0.0.jar
+    healthCheckPath: /actuator/health
+    autoDeploy: true
